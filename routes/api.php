@@ -1,6 +1,19 @@
 <?php
 
-use Illuminate\Http\Request;
+declare(strict_types=1);
+
+use App\Http\Controllers\Api\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('test', fn() => response()->json(['test']));
+// Auth Routes
+Route::prefix('auth')->group(function () {
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
+
+    Route::middleware('user-jwt')->group(function () {
+        Route::get('/refresh-token', [AuthController::class, 'refresh']);
+        Route::get('/user', [AuthController::class, 'getUser']);
+        Route::post('/logout', [AuthController::class, 'logout']);
+    });
+    Route::middleware('admin-jwt')->group(function () {});
+});
