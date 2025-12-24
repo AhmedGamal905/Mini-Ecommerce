@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Controllers\Api\Auth;
 
 use App\Enums\UserRole;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -38,7 +39,7 @@ final class AuthController
         return response()->json([
             'message' => 'User registered successfully',
             'token' => $token,
-            'user' => $user,
+            'user' => UserResource::make($user),
         ], Response::HTTP_CREATED);
     }
 
@@ -59,7 +60,7 @@ final class AuthController
         return response()->json([
             'message' => 'Login successful',
             'token' => $token,
-            'user' => Auth::user(),
+            'user' => UserResource::make(Auth::user()),
         ], Response::HTTP_OK);
     }
 
@@ -82,7 +83,7 @@ final class AuthController
     {
         return response()->json([
             'message' => 'User profile retrieved successfully',
-            'user' => Auth::user(),
+            'user' => UserResource::make(Auth::user()),
         ], Response::HTTP_OK);
     }
 

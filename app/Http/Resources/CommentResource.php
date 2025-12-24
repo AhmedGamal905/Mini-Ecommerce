@@ -7,8 +7,8 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Models\Product */
-final class ProductResource extends JsonResource
+/** @mixin \App\Models\Comment */
+final class CommentResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,13 +19,10 @@ final class ProductResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'description' => $this->description,
-            'price' => $this->price,
-            'stock_count' => $this->stock_count,
-            'comments' => $this->whenLoaded(
-                'comments',
-                fn () => CommentResource::collection($this->comments),
+            'content' => $this->content,
+            'user' => $this->whenLoaded(
+                'user',
+                fn () => UserResource::make($this->user),
             ),
             'created_at' => $this->created_at->format('Y-m-d h:i:s A'),
             'updated_at' => $this->updated_at->format('Y-m-d h:i:s A'),

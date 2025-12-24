@@ -3,10 +3,11 @@
 declare(strict_types=1);
 
 use App\Http\Controllers\Api\Auth\AuthController;
+use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Support\Facades\Route;
 
-// Auth Routes
+// Auth
 Route::prefix('auth')->group(function () {
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
@@ -18,8 +19,15 @@ Route::prefix('auth')->group(function () {
     });
 });
 
+// Public Products
 Route::resource('products', ProductController::class)->only(['index', 'show']);
 
+// Admin Product
 Route::middleware('admin-jwt')->group(function () {
     Route::resource('products', ProductController::class)->only(['store', 'update', 'destroy']);
+});
+
+// User Comments
+Route::middleware('user-jwt')->group(function () {
+    Route::resource('products.comments', CommentController::class)->only(['store', 'update', 'destroy']);
 });
