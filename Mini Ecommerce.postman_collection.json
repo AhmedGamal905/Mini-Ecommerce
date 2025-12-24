@@ -1,0 +1,1976 @@
+{
+	"info": {
+		"_postman_id": "6e79f2a4-a989-4024-9798-31644d2f9bbf",
+		"name": "Mini Ecommerce",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33760532"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    var jsonResponse = pm.response.json();\r",
+									"    var token = jsonResponse.token;\r",
+									"    \r",
+									"    pm.environment.set(\"atc_auth\", token);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Ahmed",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "Ahmed1010s@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "k0gRv6T08-~3",
+									"type": "text"
+								},
+								{
+									"key": "password_confirmation",
+									"value": "k0gRv6T08-~3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{atc_url}}/auth/register",
+							"host": [
+								"{{atc_url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "SUCCESS",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "name",
+											"value": "Ahmed",
+											"type": "text"
+										},
+										{
+											"key": "email",
+											"value": "Ahmed1010@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "k0gRv6T08-~3",
+											"type": "text"
+										},
+										{
+											"key": "password_confirmation",
+											"value": "k0gRv6T08-~3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{atc_url}}/auth/register",
+									"host": [
+										"{{atc_url}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.15"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 23 Dec 2025 20:20:48 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User registered successfully\",\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL21pbmljb21tZXJjZS50ZXN0L2FwaS9hdXRoL3JlZ2lzdGVyIiwiaWF0IjoxNzY2NTIxMjQ4LCJleHAiOjE3NjY1MjQ4NDgsIm5iZiI6MTc2NjUyMTI0OCwianRpIjoiS0F0cGpSa21XT1U0cUlBaiIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.tdyw_in7qWiCGBm4KVipCXx7Z_JcntzDJeoceCV4164\",\n    \"user\": {\n        \"name\": \"Ahmed\",\n        \"email\": \"Ahmed1010@gmail.com\",\n        \"role\": \"user\",\n        \"updated_at\": \"2025-12-23T20:20:48.000000Z\",\n        \"created_at\": \"2025-12-23T20:20:48.000000Z\",\n        \"id\": 2\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    var response = pm.response.json();\r",
+									"    var token = response.token;\r",
+									"    \r",
+									"    pm.environment.set(\"atc_auth\", token);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "Ahmed1010s@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "k0gRv6T08-~3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{atc_url}}/auth/login",
+							"host": [
+								"{{atc_url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "SUCCESS",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "email",
+											"value": "Ahmed1010@gmail.com",
+											"type": "text"
+										},
+										{
+											"key": "password",
+											"value": "k0gRv6T08-~3",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{atc_url}}/auth/login",
+									"host": [
+										"{{atc_url}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.15"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 23 Dec 2025 20:25:05 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Login successful\",\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL21pbmljb21tZXJjZS50ZXN0L2FwaS9hdXRoL2xvZ2luIiwiaWF0IjoxNzY2NTIxNTA1LCJleHAiOjE3NjY1MjUxMDUsIm5iZiI6MTc2NjUyMTUwNSwianRpIjoicVRGbndFZTFoWTZtRldHRCIsInN1YiI6IjIiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.-wVLsTngZXTm5eDjyzz199BOlYjmtMtBrg1y-6HDO3U\",\n    \"user\": {\n        \"id\": 2,\n        \"name\": \"Ahmed\",\n        \"role\": \"user\",\n        \"email\": \"Ahmed1010@gmail.com\",\n        \"email_verified_at\": null,\n        \"created_at\": \"2025-12-23T20:20:48.000000Z\",\n        \"updated_at\": \"2025-12-23T20:20:48.000000Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{atc_auth}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{atc_url}}/auth/logout",
+							"host": [
+								"{{atc_url}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "SUCCESS",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{atc_url}}/auth/logout",
+									"host": [
+										"{{atc_url}}"
+									],
+									"path": [
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.15"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 23 Dec 2025 20:25:16 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Successfully logged out\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    var response = pm.response.json();\r",
+									"    var token = response.token;\r",
+									"    \r",
+									"    pm.environment.set(\"atc_auth\", token);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{atc_auth}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{atc_url}}/auth/refresh-token",
+							"host": [
+								"{{atc_url}}"
+							],
+							"path": [
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "SUCCESS",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "",
+										"value": "",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{atc_url}}/auth/refresh-token",
+									"host": [
+										"{{atc_url}}"
+									],
+									"path": [
+										"auth",
+										"refresh-token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.15"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 23 Dec 2025 20:28:57 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Token refreshed successfully\",\n    \"token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL21pbmljb21tZXJjZS50ZXN0L2FwaS9hdXRoL3JlZnJlc2gtdG9rZW4iLCJpYXQiOjE3NjY1MjE3MzIsImV4cCI6MTc2NjUyNTMzNywibmJmIjoxNzY2NTIxNzM3LCJqdGkiOiJ6QlJ0V3dTR3pjckFmcW85Iiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.yMmCF6WvgOC2WoEgl320pgrYZJJLLE5_QGcsP7JnwYc\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Current user",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {},
+								"requests": {}
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{atc_auth}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{atc_url}}/auth/user",
+							"host": [
+								"{{atc_url}}"
+							],
+							"path": [
+								"auth",
+								"user"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "SUCCESS",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{atc_url}}/auth/user",
+									"host": [
+										"{{atc_url}}"
+									],
+									"path": [
+										"auth",
+										"user"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.15"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 23 Dec 2025 23:06:44 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"User profile retrieved successfully\",\n    \"user\": {\n        \"id\": 3,\n        \"name\": \"Ahmed\",\n        \"role\": \"user\",\n        \"email\": \"Ahmed1010s@gmail.com\",\n        \"created_at\": \"2025-12-23 11:05:05 PM\",\n        \"updated_at\": \"2025-12-23 11:05:05 PM\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "User",
+					"item": [
+						{
+							"name": "Index",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{atc_auth}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{atc_url}}/products?search=",
+									"host": [
+										"{{atc_url}}"
+									],
+									"path": [
+										"products"
+									],
+									"query": [
+										{
+											"key": "search",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "SUCCESS",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{atc_url}}/products?search=",
+											"host": [
+												"{{atc_url}}"
+											],
+											"path": [
+												"products"
+											],
+											"query": [
+												{
+													"key": "search",
+													"value": ""
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.25.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.4.15"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 24 Dec 2025 15:26:54 GMT"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"title\": \"distinctio\",\n            \"description\": \"Ullam quaerat neque eum qui quia nostrum. Non id sint exercitationem molestias libero doloribus quae.\",\n            \"price\": 730.79,\n            \"stock_count\": 240,\n            \"comments\": [\n                {\n                    \"id\": 2,\n                    \"content\": \"The product is perfect!\",\n                    \"user\": {\n                        \"id\": 1,\n                        \"name\": \"Admin\",\n                        \"role\": \"admin\",\n                        \"email\": \"admin@admin.com\",\n                        \"created_at\": \"2025-12-24 02:40:13 PM\",\n                        \"updated_at\": \"2025-12-24 02:40:13 PM\"\n                    },\n                    \"created_at\": \"2025-12-24 03:26:48 PM\",\n                    \"updated_at\": \"2025-12-24 03:26:48 PM\"\n                }\n            ],\n            \"media\": [\n                {\n                    \"id\": 5,\n                    \"url\": \"http://minicommerce.test/storage/5/WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n                    \"name\": \"WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n                    \"size\": 199645,\n                    \"created_at\": \"2025-12-24 03:23:17 PM\",\n                    \"updated_at\": \"2025-12-24 03:23:17 PM\"\n                },\n                {\n                    \"id\": 6,\n                    \"url\": \"http://minicommerce.test/storage/6/WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n                    \"name\": \"WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n                    \"size\": 199645,\n                    \"created_at\": \"2025-12-24 03:23:37 PM\",\n                    \"updated_at\": \"2025-12-24 03:23:37 PM\"\n                },\n                {\n                    \"id\": 7,\n                    \"url\": \"http://minicommerce.test/storage/7/WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n                    \"name\": \"WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n                    \"size\": 199645,\n                    \"created_at\": \"2025-12-24 03:23:38 PM\",\n                    \"updated_at\": \"2025-12-24 03:23:38 PM\"\n                },\n                {\n                    \"id\": 8,\n                    \"url\": \"http://minicommerce.test/storage/8/WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n                    \"name\": \"WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n                    \"size\": 199645,\n                    \"created_at\": \"2025-12-24 03:23:40 PM\",\n                    \"updated_at\": \"2025-12-24 03:23:40 PM\"\n                },\n                {\n                    \"id\": 9,\n                    \"url\": \"http://minicommerce.test/storage/9/WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n                    \"name\": \"WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n                    \"size\": 199645,\n                    \"created_at\": \"2025-12-24 03:23:41 PM\",\n                    \"updated_at\": \"2025-12-24 03:23:41 PM\"\n                },\n                {\n                    \"id\": 10,\n                    \"url\": \"http://minicommerce.test/storage/10/WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n                    \"name\": \"WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n                    \"size\": 199645,\n                    \"created_at\": \"2025-12-24 03:23:42 PM\",\n                    \"updated_at\": \"2025-12-24 03:23:42 PM\"\n                }\n            ],\n            \"created_at\": \"2025-12-24 02:40:14 PM\",\n            \"updated_at\": \"2025-12-24 02:40:14 PM\"\n        },\n        {\n            \"id\": 2,\n            \"title\": \"non\",\n            \"description\": \"Nulla et enim suscipit aut amet dolorum vitae. Officiis voluptatum praesentium illo et autem. Sed eum totam exercitationem ea et est dolorum occaecati. Nulla dolor ratione hic. Beatae sequi placeat dolores placeat et in.\",\n            \"price\": 766.53,\n            \"stock_count\": 293,\n            \"comments\": [],\n            \"media\": [],\n            \"created_at\": \"2025-12-24 02:40:14 PM\",\n            \"updated_at\": \"2025-12-24 02:40:14 PM\"\n        },\n        {\n            \"id\": 3,\n            \"title\": \"ab\",\n            \"description\": \"Quasi sit est aspernatur dolore omnis eos hic. Aperiam facilis autem omnis ut asperiores recusandae quidem. Vero et voluptas et alias. Voluptatem est laboriosam magnam ab ut voluptatem.\",\n            \"price\": 418.24,\n            \"stock_count\": 449,\n            \"comments\": [],\n            \"media\": [],\n            \"created_at\": \"2025-12-24 02:40:14 PM\",\n            \"updated_at\": \"2025-12-24 02:40:14 PM\"\n        },\n        {\n            \"id\": 4,\n            \"title\": \"tenetur\",\n            \"description\": \"Voluptas et eos et molestias quia id officiis. Exercitationem nemo cum nihil eum dignissimos dicta maiores. In numquam enim eaque rem eos saepe pariatur. Iste fuga quas in occaecati explicabo illo vitae reprehenderit.\",\n            \"price\": 316.56,\n            \"stock_count\": 450,\n            \"comments\": [],\n            \"media\": [],\n            \"created_at\": \"2025-12-24 02:40:14 PM\",\n            \"updated_at\": \"2025-12-24 02:40:14 PM\"\n        },\n        {\n            \"id\": 5,\n            \"title\": \"iste\",\n            \"description\": \"Maxime non rerum corrupti maxime cum. Illo ad enim qui. Dicta exercitationem deleniti rerum perspiciatis. Corrupti maxime in dicta autem et sint.\",\n            \"price\": 166.67,\n            \"stock_count\": 14,\n            \"comments\": [],\n            \"media\": [],\n            \"created_at\": \"2025-12-24 02:40:14 PM\",\n            \"updated_at\": \"2025-12-24 02:40:14 PM\"\n        },\n        {\n            \"id\": 6,\n            \"title\": \"iste\",\n            \"description\": \"Dolorem dolor aut consequatur non excepturi minima doloribus. Possimus ut aliquid corrupti cupiditate. Natus laudantium explicabo dolores expedita ad totam iusto.\",\n            \"price\": 440.79,\n            \"stock_count\": 353,\n            \"comments\": [],\n            \"media\": [],\n            \"created_at\": \"2025-12-24 02:40:14 PM\",\n            \"updated_at\": \"2025-12-24 02:40:14 PM\"\n        },\n        {\n            \"id\": 7,\n            \"title\": \"provident\",\n            \"description\": \"Architecto aut est est harum accusamus ex autem. Quo ipsa eos non voluptas ut possimus. Dolor consequatur ex placeat dolorem non incidunt. Perferendis maiores ut ex.\",\n            \"price\": 359.74,\n            \"stock_count\": 156,\n            \"comments\": [],\n            \"media\": [],\n            \"created_at\": \"2025-12-24 02:40:14 PM\",\n            \"updated_at\": \"2025-12-24 02:40:14 PM\"\n        },\n        {\n            \"id\": 8,\n            \"title\": \"labore\",\n            \"description\": \"Aut veritatis veniam velit neque vero aut. Distinctio doloribus et consequatur ducimus aut. Itaque praesentium eius dolores et. Delectus rerum quae consequatur magnam.\",\n            \"price\": 141.89,\n            \"stock_count\": 196,\n            \"comments\": [],\n            \"media\": [],\n            \"created_at\": \"2025-12-24 02:40:14 PM\",\n            \"updated_at\": \"2025-12-24 02:40:14 PM\"\n        },\n        {\n            \"id\": 9,\n            \"title\": \"recusandae\",\n            \"description\": \"Est aut qui deleniti. Animi dicta ea ut rerum. Expedita amet ut cupiditate culpa.\",\n            \"price\": 961.21,\n            \"stock_count\": 34,\n            \"comments\": [],\n            \"media\": [],\n            \"created_at\": \"2025-12-24 02:40:14 PM\",\n            \"updated_at\": \"2025-12-24 02:40:14 PM\"\n        },\n        {\n            \"id\": 10,\n            \"title\": \"vitae\",\n            \"description\": \"Aut blanditiis quas perferendis beatae beatae vitae. Placeat et consectetur optio nam nihil sit. Dicta rerum quaerat repudiandae omnis numquam.\",\n            \"price\": 487.49,\n            \"stock_count\": 355,\n            \"comments\": [],\n            \"media\": [],\n            \"created_at\": \"2025-12-24 02:40:14 PM\",\n            \"updated_at\": \"2025-12-24 02:40:14 PM\"\n        },\n        {\n            \"id\": 11,\n            \"title\": \"temporibus\",\n            \"description\": \"Enim qui possimus quasi totam sed et. Autem modi voluptate in quis sed facilis vero. Libero exercitationem rerum aperiam accusamus nostrum.\",\n            \"price\": 758.92,\n            \"stock_count\": 445,\n            \"comments\": [],\n            \"media\": [],\n            \"created_at\": \"2025-12-24 02:40:14 PM\",\n            \"updated_at\": \"2025-12-24 02:40:14 PM\"\n        },\n        {\n            \"id\": 12,\n            \"title\": \"assumenda\",\n            \"description\": \"Velit quis quidem quo est fuga aliquam. Nihil quo consequatur et voluptatem commodi ea voluptatem repellendus. Quasi quo dolores praesentium pariatur et molestiae blanditiis fugiat.\",\n            \"price\": 117.81,\n            \"stock_count\": 218,\n            \"comments\": [],\n            \"media\": [],\n            \"created_at\": \"2025-12-24 02:40:14 PM\",\n            \"updated_at\": \"2025-12-24 02:40:14 PM\"\n        },\n        {\n            \"id\": 13,\n            \"title\": \"optio\",\n            \"description\": \"Inventore ut ut aut quam dolorem. Aliquam quia minus autem dolorem reiciendis rem harum. Consequatur voluptas non doloribus aut optio aut mollitia.\",\n            \"price\": 782.42,\n            \"stock_count\": 351,\n            \"comments\": [],\n            \"media\": [],\n            \"created_at\": \"2025-12-24 02:40:14 PM\",\n            \"updated_at\": \"2025-12-24 02:40:14 PM\"\n        },\n        {\n            \"id\": 14,\n            \"title\": \"ipsum\",\n            \"description\": \"Aspernatur officiis ullam ut voluptatibus. Perferendis quia voluptates qui. Autem ut laborum exercitationem aut atque dolores sapiente deserunt.\",\n            \"price\": 525.35,\n            \"stock_count\": 221,\n            \"comments\": [],\n            \"media\": [],\n            \"created_at\": \"2025-12-24 02:40:14 PM\",\n            \"updated_at\": \"2025-12-24 02:40:14 PM\"\n        },\n        {\n            \"id\": 15,\n            \"title\": \"beatae\",\n            \"description\": \"Voluptates dolorum consectetur dolorum fuga qui labore quo. Voluptates qui cupiditate earum est.\",\n            \"price\": 593.4,\n            \"stock_count\": 67,\n            \"comments\": [],\n            \"media\": [],\n            \"created_at\": \"2025-12-24 02:40:14 PM\",\n            \"updated_at\": \"2025-12-24 02:40:14 PM\"\n        }\n    ],\n    \"links\": {\n        \"first\": \"https://minicommerce.test/api/products?page=1\",\n        \"last\": \"https://minicommerce.test/api/products?page=4\",\n        \"prev\": null,\n        \"next\": \"https://minicommerce.test/api/products?page=2\"\n    },\n    \"meta\": {\n        \"current_page\": 1,\n        \"from\": 1,\n        \"last_page\": 4,\n        \"links\": [\n            {\n                \"url\": null,\n                \"label\": \"&laquo; Previous\",\n                \"page\": null,\n                \"active\": false\n            },\n            {\n                \"url\": \"https://minicommerce.test/api/products?page=1\",\n                \"label\": \"1\",\n                \"page\": 1,\n                \"active\": true\n            },\n            {\n                \"url\": \"https://minicommerce.test/api/products?page=2\",\n                \"label\": \"2\",\n                \"page\": 2,\n                \"active\": false\n            },\n            {\n                \"url\": \"https://minicommerce.test/api/products?page=3\",\n                \"label\": \"3\",\n                \"page\": 3,\n                \"active\": false\n            },\n            {\n                \"url\": \"https://minicommerce.test/api/products?page=4\",\n                \"label\": \"4\",\n                \"page\": 4,\n                \"active\": false\n            },\n            {\n                \"url\": \"https://minicommerce.test/api/products?page=2\",\n                \"label\": \"Next &raquo;\",\n                \"page\": 2,\n                \"active\": false\n            }\n        ],\n        \"path\": \"https://minicommerce.test/api/products\",\n        \"per_page\": 15,\n        \"to\": 15,\n        \"total\": 50\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Show",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								},
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript",
+										"packages": {},
+										"requests": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{atc_auth}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{atc_url}}/products/1",
+									"host": [
+										"{{atc_url}}"
+									],
+									"path": [
+										"products",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "SUCCESS",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{atc_url}}/products/1",
+											"host": [
+												"{{atc_url}}"
+											],
+											"path": [
+												"products",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.25.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.4.15"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 24 Dec 2025 15:27:38 GMT"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"title\": \"distinctio\",\n    \"description\": \"Ullam quaerat neque eum qui quia nostrum. Non id sint exercitationem molestias libero doloribus quae.\",\n    \"price\": 730.79,\n    \"stock_count\": 240,\n    \"comments\": [\n        {\n            \"id\": 2,\n            \"content\": \"The product is perfect!\",\n            \"user\": {\n                \"id\": 1,\n                \"name\": \"Admin\",\n                \"role\": \"admin\",\n                \"email\": \"admin@admin.com\",\n                \"created_at\": \"2025-12-24 02:40:13 PM\",\n                \"updated_at\": \"2025-12-24 02:40:13 PM\"\n            },\n            \"created_at\": \"2025-12-24 03:26:48 PM\",\n            \"updated_at\": \"2025-12-24 03:26:48 PM\"\n        }\n    ],\n    \"media\": [\n        {\n            \"id\": 5,\n            \"url\": \"http://minicommerce.test/storage/5/WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n            \"name\": \"WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n            \"size\": 199645,\n            \"created_at\": \"2025-12-24 03:23:17 PM\",\n            \"updated_at\": \"2025-12-24 03:23:17 PM\"\n        },\n        {\n            \"id\": 6,\n            \"url\": \"http://minicommerce.test/storage/6/WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n            \"name\": \"WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n            \"size\": 199645,\n            \"created_at\": \"2025-12-24 03:23:37 PM\",\n            \"updated_at\": \"2025-12-24 03:23:37 PM\"\n        },\n        {\n            \"id\": 7,\n            \"url\": \"http://minicommerce.test/storage/7/WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n            \"name\": \"WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n            \"size\": 199645,\n            \"created_at\": \"2025-12-24 03:23:38 PM\",\n            \"updated_at\": \"2025-12-24 03:23:38 PM\"\n        },\n        {\n            \"id\": 8,\n            \"url\": \"http://minicommerce.test/storage/8/WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n            \"name\": \"WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n            \"size\": 199645,\n            \"created_at\": \"2025-12-24 03:23:40 PM\",\n            \"updated_at\": \"2025-12-24 03:23:40 PM\"\n        },\n        {\n            \"id\": 9,\n            \"url\": \"http://minicommerce.test/storage/9/WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n            \"name\": \"WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n            \"size\": 199645,\n            \"created_at\": \"2025-12-24 03:23:41 PM\",\n            \"updated_at\": \"2025-12-24 03:23:41 PM\"\n        },\n        {\n            \"id\": 10,\n            \"url\": \"http://minicommerce.test/storage/10/WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n            \"name\": \"WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n            \"size\": 199645,\n            \"created_at\": \"2025-12-24 03:23:42 PM\",\n            \"updated_at\": \"2025-12-24 03:23:42 PM\"\n        }\n    ],\n    \"created_at\": \"2025-12-24 02:40:14 PM\",\n    \"updated_at\": \"2025-12-24 02:40:14 PM\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "Media",
+							"item": [
+								{
+									"name": "Create (Add product image)",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{atc_auth}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "formdata",
+											"formdata": [
+												{
+													"key": "image",
+													"type": "file",
+													"src": "/C:/Users/ahmed/Desktop/WhatsApp Image 2025-05-11 at 15.23.08_944b90b0.jpg"
+												}
+											]
+										},
+										"url": {
+											"raw": "{{atc_url}}/products/1/images",
+											"host": [
+												"{{atc_url}}"
+											],
+											"path": [
+												"products",
+												"1",
+												"images"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "SUCCESS",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "formdata",
+													"formdata": [
+														{
+															"key": "image",
+															"type": "file",
+															"src": "/C:/Users/ahmed/Desktop/WhatsApp Image 2025-05-11 at 15.23.08_944b90b0.jpg"
+														}
+													],
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{atc_url}}/products/1/images",
+													"host": [
+														"{{atc_url}}"
+													],
+													"path": [
+														"products",
+														"1",
+														"images"
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Server",
+													"value": "nginx/1.25.2"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json"
+												},
+												{
+													"key": "Transfer-Encoding",
+													"value": "chunked"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.4.15"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Date",
+													"value": "Wed, 24 Dec 2025 15:20:25 GMT"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"id\": 4,\n    \"url\": \"http://minicommerce.test/storage/4/WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n    \"name\": \"WhatsApp-Image-2025-05-11-at-15.23.08_944b90b0.jpg\",\n    \"size\": 199645,\n    \"created_at\": \"2025-12-24 03:20:25 PM\",\n    \"updated_at\": \"2025-12-24 03:20:25 PM\"\n}"
+										}
+									]
+								},
+								{
+									"name": "destroy",
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{atc_auth}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{atc_url}}/products/1/images/4",
+											"host": [
+												"{{atc_url}}"
+											],
+											"path": [
+												"products",
+												"1",
+												"images",
+												"4"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "SUCCESS",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [
+													{
+														"key": "Accept",
+														"value": "application/json",
+														"type": "text"
+													}
+												],
+												"url": {
+													"raw": "{{atc_url}}/products/1/images/4",
+													"host": [
+														"{{atc_url}}"
+													],
+													"path": [
+														"products",
+														"1",
+														"images",
+														"4"
+													]
+												}
+											},
+											"status": "No Content",
+											"code": 204,
+											"_postman_previewlanguage": null,
+											"header": [
+												{
+													"key": "Server",
+													"value": "nginx/1.25.2"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "X-Powered-By",
+													"value": "PHP/8.4.15"
+												},
+												{
+													"key": "Cache-Control",
+													"value": "no-cache, private"
+												},
+												{
+													"key": "Date",
+													"value": "Wed, 24 Dec 2025 15:21:32 GMT"
+												},
+												{
+													"key": "Access-Control-Allow-Origin",
+													"value": "*"
+												}
+											],
+											"cookie": [],
+											"body": null
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Create",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{atc_auth}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Wireless Bluetooth Headphones\",\r\n    \"description\": \"High-quality wireless headphones with noise cancellation and 30-hour battery life. Perfect for music lovers and professionals.\",\r\n    \"price\": 79.99,\r\n    \"stock_count\": 150\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{atc_url}}/products",
+									"host": [
+										"{{atc_url}}"
+									],
+									"path": [
+										"products"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "SUCCESS",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Wireless Bluetooth Headphones\",\r\n    \"description\": \"High-quality wireless headphones with noise cancellation and 30-hour battery life. Perfect for music lovers and professionals.\",\r\n    \"price\": 79.99,\r\n    \"stock_count\": 150\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{atc_url}}/products",
+											"host": [
+												"{{atc_url}}"
+											],
+											"path": [
+												"products"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.25.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.4.15"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 24 Dec 2025 15:27:59 GMT"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 51,\n    \"title\": \"Wireless Bluetooth Headphones\",\n    \"description\": \"High-quality wireless headphones with noise cancellation and 30-hour battery life. Perfect for music lovers and professionals.\",\n    \"price\": 79.99,\n    \"stock_count\": 150,\n    \"created_at\": \"2025-12-24 03:27:58 PM\",\n    \"updated_at\": \"2025-12-24 03:27:58 PM\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Update",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{atc_auth}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Wireless Bluetooth\",\r\n    \"description\": \"High-quality wireless headphones with noise cancellation and 30-hour battery life. Perfect for music lovers and professionals.\",\r\n    \"price\": 79.99,\r\n    \"stock_count\": 150\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{atc_url}}/products/1",
+									"host": [
+										"{{atc_url}}"
+									],
+									"path": [
+										"products",
+										"1"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "SUCCESS",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"title\": \"Wireless Bluetooth\",\r\n    \"description\": \"High-quality wireless headphones with noise cancellation and 30-hour battery life. Perfect for music lovers and professionals.\",\r\n    \"price\": 79.99,\r\n    \"stock_count\": 150\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{atc_url}}/products/1",
+											"host": [
+												"{{atc_url}}"
+											],
+											"path": [
+												"products",
+												"1"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.25.2"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.4.15"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 24 Dec 2025 15:29:38 GMT"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"id\": 1,\n    \"title\": \"Wireless Bluetooth\",\n    \"description\": \"High-quality wireless headphones with noise cancellation and 30-hour battery life. Perfect for music lovers and professionals.\",\n    \"price\": 79.99,\n    \"stock_count\": 150,\n    \"created_at\": \"2025-12-24 02:40:14 PM\",\n    \"updated_at\": \"2025-12-24 03:29:38 PM\"\n}"
+								}
+							]
+						},
+						{
+							"name": "destroy",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{atc_auth}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{atc_url}}/products/50",
+									"host": [
+										"{{atc_url}}"
+									],
+									"path": [
+										"products",
+										"50"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "SUCCESS",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"key": "Accept",
+												"value": "application/json",
+												"type": "text"
+											}
+										],
+										"url": {
+											"raw": "{{atc_url}}/products/50",
+											"host": [
+												"{{atc_url}}"
+											],
+											"path": [
+												"products",
+												"50"
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": null,
+									"header": [
+										{
+											"key": "Server",
+											"value": "nginx/1.25.2"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "X-Powered-By",
+											"value": "PHP/8.4.15"
+										},
+										{
+											"key": "Cache-Control",
+											"value": "no-cache, private"
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 24 Dec 2025 15:30:03 GMT"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										}
+									],
+									"cookie": [],
+									"body": null
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{atc_auth}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"The product is perfect!\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{atc_url}}/products/1/comments",
+							"host": [
+								"{{atc_url}}"
+							],
+							"path": [
+								"products",
+								"1",
+								"comments"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "SUCCESS",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"content\": \"The product is perfect!\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{atc_url}}/products/49/comments",
+									"host": [
+										"{{atc_url}}"
+									],
+									"path": [
+										"products",
+										"49",
+										"comments"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.15"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 14:29:14 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 1,\n    \"content\": \"The product is perfect!\",\n    \"created_at\": \"2025-12-24 02:29:13 PM\",\n    \"updated_at\": \"2025-12-24 02:29:13 PM\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{atc_auth}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"The product is bad\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{atc_url}}/products/49/comments/3",
+							"host": [
+								"{{atc_url}}"
+							],
+							"path": [
+								"products",
+								"49",
+								"comments",
+								"3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "SUCCESS",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"content\": \"The product is bad\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{atc_url}}/products/49/comments/2",
+									"host": [
+										"{{atc_url}}"
+									],
+									"path": [
+										"products",
+										"49",
+										"comments",
+										"2"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.15"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 14:32:05 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Encoding",
+									"value": "gzip"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": 2,\n    \"content\": \"The product is bad\",\n    \"created_at\": \"2025-12-24 02:29:58 PM\",\n    \"updated_at\": \"2025-12-24 02:32:05 PM\"\n}"
+						},
+						{
+							"name": "Fail (Not user comment)",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"content\": \"The product is bad\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{atc_url}}/products/49/comments/3",
+									"host": [
+										"{{atc_url}}"
+									],
+									"path": [
+										"products",
+										"49",
+										"comments",
+										"3"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.15"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 14:34:49 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"You are not authorized to update this comment.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "destroy Copy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{atc_auth}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{atc_url}}/products/49/comments/2",
+							"host": [
+								"{{atc_url}}"
+							],
+							"path": [
+								"products",
+								"49",
+								"comments",
+								"2"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Fail (Not user Comment)",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{atc_url}}/products/49/comments/3",
+									"host": [
+										"{{atc_url}}"
+									],
+									"path": [
+										"products",
+										"49",
+										"comments",
+										"3"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.15"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 14:35:30 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Unauthorized to delete this comment\"\n}"
+						},
+						{
+							"name": "SUCCESS",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{atc_url}}/products/49/comments/2",
+									"host": [
+										"{{atc_url}}"
+									],
+									"path": [
+										"products",
+										"49",
+										"comments",
+										"2"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "Server",
+									"value": "nginx/1.25.2"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.4.15"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 24 Dec 2025 14:35:48 GMT"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			]
+		}
+	]
+}
