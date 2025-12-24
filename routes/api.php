@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\Api\Auth\AuthController;
 use App\Http\Controllers\Api\CommentController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\ProductImageController;
 use Illuminate\Support\Facades\Route;
 
 // Auth
@@ -25,6 +26,14 @@ Route::resource('products', ProductController::class)->only(['index', 'show']);
 // Admin Product
 Route::middleware('admin-jwt')->group(function () {
     Route::resource('products', ProductController::class)->only(['store', 'update', 'destroy']);
+
+    // Product images routes
+    Route::prefix('products')
+        ->controller(ProductImageController::class)
+        ->group(function () {
+            Route::post('/{product}/images/', 'store')->name('store');
+            Route::delete('/{product}/images/{media}', 'destroy')->name('destroy');
+        });
 });
 
 // User Comments

@@ -6,7 +6,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-final class StoreCommentRequest extends FormRequest
+final class ProductImageRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -16,7 +16,7 @@ final class StoreCommentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'content' => ['required', 'string', 'min:3', 'max:1000'],
+            'image' => ['required', 'image', 'max:5120'],
         ];
     }
 }

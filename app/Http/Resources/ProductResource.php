@@ -27,6 +27,10 @@ final class ProductResource extends JsonResource
                 'comments',
                 fn () => CommentResource::collection($this->comments),
             ),
+            'media' => $this->whenLoaded(
+                'media',
+                fn () => MediaResource::collection($this->media),
+            ),
             'created_at' => $this->created_at->format('Y-m-d h:i:s A'),
             'updated_at' => $this->updated_at->format('Y-m-d h:i:s A'),
         ];

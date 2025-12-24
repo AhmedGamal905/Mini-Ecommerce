@@ -20,7 +20,7 @@ final class ProductController
     public function index(Request $request): JsonResponse
     {
         $products = Product::query()
-            ->with('comments.user')
+            ->with(['comments.user', 'media'])
             ->when(
                 $request->string('search')->value(),
                 fn (Builder $builder, string $search): Builder => $builder->whereLike('title', "%$search%")
@@ -49,7 +49,7 @@ final class ProductController
      */
     public function show(Product $product): JsonResponse
     {
-        return response()->json(ProductResource::make($product->load('comments.user')));
+        return response()->json(ProductResource::make($product->load(['comments.user', 'media'])));
     }
 
     /**
