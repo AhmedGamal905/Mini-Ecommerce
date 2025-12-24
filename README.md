@@ -1,59 +1,131 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Mini-Ecommerce API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A Laravel-based e-commerce API with JWT authentication, role-based access control, and product management with image uploads.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **JWT Authentication**: Secure token-based authentication using Tymon/JWT
+- **Role-Based Access Control**: Two user roles (Admin and User) with different permissions
+- **Product Management**: Full CRUD operations for products (Admin only)
+- **Image Management**: Upload and delete multiple product images (Admin only)
+- **Comments System**: Authenticated users can comment on products
+- **Public Access**: Guests can view products without authentication
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## User Roles & Permissions
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Admin
+- Create, update, and delete products
+- Upload and delete product images
+- Full access to all resources
 
-## Learning Laravel
+### User (Authenticated)
+- View products
+- Create, update, and delete their own comments
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+### Guest (Unauthenticated)
+- View products (read-only)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Prerequisites
 
-## Laravel Sponsors
+- PHP 8.4
+- Laravel 12
+- MySQL
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Installation
 
-### Premium Partners
+### 1. Clone and Install Dependencies
+```bash
+composer install
+```
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 2. Configure Environment
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-## Contributing
+### 3. Configure Database
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Update your `.env` file with database credentials:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=mini_ecommerce
+DB_USERNAME=your_username
+DB_PASSWORD=your_password
+```
 
-## Code of Conduct
+### 4. Generate JWT Secret
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Generate the JWT secret key for authentication:
+```bash
+php artisan jwt:secret
+```
 
-## Security Vulnerabilities
+This command will add `JWT_SECRET` to your `.env` file.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 5. Run Installation Command
+```bash
+php artisan project:install
+```
 
-## License
+This command will:
+- Run database migrations
+- Seed the database with test users and products
+- Create storage symlink
+- Clear caches
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### 6. Test Users
+
+The seeder creates two default users:
+
+**Admin User:**
+- Email: `admin@admin.com`
+- Password: `password`
+- Role: Admin
+
+**Regular User:**
+- Email: `testuser@gmail.com`
+- Password: `password`
+- Role: User
+
+### 7. Start Development Server
+```bash
+composer run dev
+```
+
+Or manually:
+```bash
+php artisan serve
+```
+
+## Documentation
+
+- **Postman Collection**: Import `Mini Ecommerce.postman_collection.json` from the repository root for API testing
+- **Database Schema**: View `ERD.png` in the repository root for the database structure
+
+## API Endpoints
+
+### Authentication Endpoints
+- `POST /api/auth/register` - Register new user
+- `POST /api/auth/login` - Login and receive JWT token
+- `GET /api/auth/refresh-token` - Refresh JWT token (requires authentication)
+- `GET /api/auth/user` - Get authenticated user details (requires authentication)
+- `POST /api/auth/logout` - Logout (requires authentication)
+
+### Product Endpoints
+- `GET /api/products` - List all products (public)
+- `GET /api/products/{id}` - Get single product (public)
+- `POST /api/products` - Create product (admin only)
+- `PUT /api/products/{id}` - Update product (admin only)
+- `DELETE /api/products/{id}` - Delete product (admin only)
+
+### Product Image Endpoints
+- `POST /api/products/{product}/images` - Upload image (admin only)
+- `DELETE /api/products/{product}/images/{media}` - Delete image (admin only)
+
+### Comment Endpoints
+- `POST /api/products/{product}/comments` - Create comment on product (authenticated users)
+- `PUT /api/products/{product}/comments/{comment}` - Update own comment (authenticated users)
+- `DELETE /api/products/{product}/comments/{comment}` - Delete own comment (authenticated users)
